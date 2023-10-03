@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" >
+    <xacro:property name="chassis_length_x" value="0.55" />
+    <xacro:property name="chassis_width_y" value="0.35" />
+    <xacro:property name="chassis_height_z" value="0.215" />
+    <xacro:property name="cor_to_rear_of_chassis" value="0.12" />
+    <xacro:property name="front_of_chassis_to_caster" value="0.115" />
+    <xacro:property name="motor_length" value="0.1" />
+    <xacro:property name="wheel_radius" value="0.035" />
+    <xacro:property name="wheel_length" value="0.02" />
+    <xacro:property name="caster_height" value="${wheel_radius * 2}" />
+    
+    <xacro:property name="inter_motor_distance" value="0.15" />
+    <xacro:property name="robot_height" value="${chassis_height_z + wheel_radius * 2}" />
+</robot>
