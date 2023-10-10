@@ -6,7 +6,6 @@ from launch.actions import DeclareLaunchArgument
 from launch_ros.actions import Node
 # import xacro
 
-
 def generate_launch_description():
 
     # Specify the name of the package and path to xacro file within the package

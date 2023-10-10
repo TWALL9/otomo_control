@@ -21,6 +21,7 @@ find_package(ament_cmake REQUIRED)
 # further dependencies manually.
 find_package(robot_state_publisher REQUIRED)
 find_package(controller_manager REQUIRED)
+find_package(otomo_plugins REQUIRED)
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
