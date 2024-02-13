@@ -6,9 +6,9 @@ twist_mux:
         timeout : 0.5
         priority: 10
       tracker:
-        topic   : cmd_vel_tracker
+        topic   : cmd_vel_web_joy
         timeout : 0.5
-        priority: 20
+        priority: 100
       joystick:
         topic   : cmd_vel_joy
         timeout : 0.5

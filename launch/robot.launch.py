@@ -21,7 +21,14 @@ def generate_launch_description():
         )])
     )
 
+    twist_mux = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource([os.path.join(
+            pkg_share_dir, 'launch', 'twist_mux.launch.py'
+        )]), launch_arguments={'use_sim_time': 'false'}
+    )
+
     return LaunchDescription([
         rsp,
         controllers,
+        twist_mux,
     ])
