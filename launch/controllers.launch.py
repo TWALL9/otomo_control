@@ -10,13 +10,14 @@ from launch.actions import TimerAction
 
 from launch_ros.actions import Node
 
+
 def generate_launch_description():
     pkg_name = 'otomo_control'
     pkg_share_dir = get_package_share_directory(pkg_name)
 
     robot_description = Command(['ros2 param get --hide-type /robot_state_publisher robot_description'])
 
-    controller_params_file = os.path.join(pkg_share_dir,'config','controllers.yaml')
+    controller_params_file = os.path.join(pkg_share_dir, 'config', 'controllers.yaml')
 
     controller_manager = Node(
         package="controller_manager",
@@ -33,6 +34,12 @@ def generate_launch_description():
         arguments=['diff_controller'],
     )
 
+    pid_spawner = Node(
+        package='controller_manager',
+        executable='spawner.py',
+        arguments=['pid_controller']
+    )
+
     joint_broad_spawner = Node(
         package='controller_manager',
         executable='spawner.py',
@@ -43,6 +50,13 @@ def generate_launch_description():
         event_handler=OnProcessStart(
             target_action=controller_manager,
             on_start=[diff_drive_spawner],
+        )
+    )
+
+    delayed_pid_spawner = RegisterEventHandler(
+        event_handler=OnProcessStart(
+            target_action=controller_manager,
+            on_start=[pid_spawner],
         )
     )
 
@@ -57,5 +71,6 @@ def generate_launch_description():
     return LaunchDescription([
         delayed_controller_manager,
         delayed_diff_drive_spawner,
+        delayed_pid_spawner,
         delayed_joint_broad_spawner,
     ])

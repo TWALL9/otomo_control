@@ -7,8 +7,19 @@ controller_manager:
     diff_controller:
       type: diff_drive_controller/DiffDriveController
 
+    pid_controller:
+      type: otomo_plugins/OtomoController
+
     joint_broad:
       type: joint_state_broadcaster/JointStateBroadcaster
+
+pid_controller:
+  ros__parameters:
+    pid_controllers: ['default']
+    pid_default_p_term: 1.0
+    pid_default_i_term: 1.0
+    pid_default_d_term: 0.0
+
 
 diff_controller:
   ros__parameters:
@@ -24,7 +35,7 @@ diff_controller:
 
     use_stamped_vel: false
 
-    # open_loop: false    
+    # open_loop: false
 
     # wheels_per_side: x
     # wheel_separation_multiplier: x
@@ -40,7 +51,7 @@ diff_controller:
     # cmd_vel_timeout: x
     # publish_limited_velocity: x
     # velocity_rolling_window_size: x
-    
+
 
     # linear.x.has_velocity_limits: false
     # linear.x.has_acceleration_limits: false
