@@ -16,9 +16,9 @@ controller_manager:
 pid_controller:
   ros__parameters:
     pid_controllers: ['default']
-    pid_default_p_term: 1.0
-    pid_default_i_term: 1.0
-    pid_default_d_term: 0.0
+    pid_default_p_term: 0.8
+    pid_default_i_term: 0.5
+    pid_default_d_term: 0.55
 
 
 diff_controller:
