@@ -15,9 +15,15 @@ def generate_launch_description():
     pkg_name = 'otomo_control'
     pkg_share_dir = get_package_share_directory(pkg_name)
 
-    robot_description = Command(['ros2 param get --hide-type /robot_state_publisher robot_description'])
+    robot_description = Command(
+        ['ros2 param get --hide-type /robot_state_publisher robot_description']
+    )
 
-    controller_params_file = os.path.join(pkg_share_dir, 'config', 'controllers.yaml')
+    controller_params_file = os.path.join(
+        pkg_share_dir,
+        'config',
+        'controllers.yaml'
+    )
 
     controller_manager = Node(
         package="controller_manager",
@@ -26,7 +32,10 @@ def generate_launch_description():
                     controller_params_file]
     )
 
-    delayed_controller_manager = TimerAction(period=3.0, actions=[controller_manager])
+    delayed_controller_manager = TimerAction(
+        period=3.0,
+        actions=[controller_manager]
+    )
 
     diff_drive_spawner = Node(
         package='controller_manager',
