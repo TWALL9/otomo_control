@@ -7,18 +7,18 @@ from launch.launch_description_sources import PythonLaunchDescriptionSource
 
 
 def generate_launch_description():
-    ld = LaunchDescription()
-
-    map_server_config_path = "/home/tom/devel/otomo2_ws/maps/apartment3_save.yaml"
+    pkg_name = 'otomo_control'
+    pkg_share_dir = get_package_share_directory(pkg_name)
+    map_server_config_path = os.path.join(pkg_share_dir, 'maps', 'living_room.yaml')
 
     map_server_cmd = Node(
-        package="nav2_map_server",
-        executable="map_server",
-        output="screen",
-        parameters=[{"yaml_filename": map_server_config_path}]
+        package='nav2_map_server',
+        executable='map_server',
+        output='screen',
+        parameters=[{'yaml_filename': map_server_config_path}]
     )
 
-    lifecycle_nodes = ["map_server"]
+    lifecycle_nodes = ['map_server']
     use_sim_time = False
     autostart = True
 
@@ -32,6 +32,8 @@ def generate_launch_description():
                     {'autostart': autostart},
                     {'node_names': lifecycle_nodes}]
     )
+
+    ld = LaunchDescription()
 
     ld.add_action(map_server_cmd)
     ld.add_action(start_lifecycle_manager_cmd)
