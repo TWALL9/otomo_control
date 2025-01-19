@@ -16,6 +16,41 @@
   <exec_depend>diff_drive_controller</exec_depend>
   <exec_depend>twist_mux</exec_depend>
 
+  <!-- Just add all the nav2 packages... -->
+  <exec_depend>slam_toolbox</exec_depend>
+  <exec_depend>nav2_amcl</exec_depend>
+  <exec_depend>nav2_behaviors</exec_depend>
+  <exec_depend>nav2_behavior_tree</exec_depend>
+  <exec_depend>nav2_bringup</exec_depend>
+  <exec_depend>nav2_bt_navigator</exec_depend>
+  <exec_depend>nav2_collision_monitor</exec_depend>
+  <exec_depend>nav2_common</exec_depend>
+  <exec_depend>nav2_constrained_smoother</exec_depend>
+  <exec_depend>nav2_controller</exec_depend>
+  <exec_depend>nav2_core</exec_depend>
+  <exec_depend>nav2_costmap_2d</exec_depend>
+  <exec_depend>nav2_dwb_controller</exec_depend>
+  <exec_depend>nav2_graceful_controller</exec_depend>
+  <exec_depend>nav2_lifecycle_manager</exec_depend>
+  <exec_depend>nav2_map_server</exec_depend>
+  <exec_depend>nav2_mppi_controller</exec_depend>
+  <exec_depend>nav2_msgs</exec_depend>
+  <exec_depend>nav2_navfn_planner</exec_depend>
+  <exec_depend>nav2_planner</exec_depend>
+  <exec_depend>nav2_regulated_pure_pursuit_controller</exec_depend>
+  <exec_depend>nav2_rotation_shim_controller</exec_depend>
+  <exec_depend>nav2_rviz_plugins</exec_depend>
+  <exec_depend>nav2_simple_commander</exec_depend>
+  <exec_depend>nav2_smac_planner</exec_depend>
+  <exec_depend>nav2_smoother</exec_depend>
+  <exec_depend>nav2_theta_star_planner</exec_depend>
+  <exec_depend>nav2_util</exec_depend>
+  <exec_depend>nav2_velocity_smoother</exec_depend>
+  <exec_depend>nav2_voxel_grid</exec_depend>
+  <exec_depend>nav2_waypoint_follower</exec_depend>
+
+  <exec_depend>ros2_control</exec_depend>
+
   <test_depend>ament_lint_auto</test_depend>
   <test_depend>ament_lint_common</test_depend>
 
