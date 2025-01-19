@@ -13,14 +13,29 @@ def generate_launch_description():
 
     use_sim_time = LaunchConfiguration("use_sim_time")
     autostart = LaunchConfiguration("autostart")
-    params_file = LaunchConfiguration("params_file")
+    nav_params_file = LaunchConfiguration("nav_params_file")
+    slam_params_file = LaunchConfiguration("slam_params_file")
     map = LaunchConfiguration("map")
 
-    default_params_file = os.path.join(
+    slam_default_params_file = os.path.join(
+        pkg_share_dir, "config", "mapper_params_online_async.yaml"
+    )
+    nav_default_params_file = os.path.join(
         pkg_share_dir, "config", "nav2_jazzy_params.yaml"
     )
 
-    nav_bringup_launch = IncludeLaunchDescription(
+    slam_launch = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(
+            [os.path.join(pkg_share_dir, "launch", "slam.launch.py")]
+        ),
+        launch_arguments={
+            "use_sim_time": use_sim_time,
+            "autostart": autostart,
+            "params_file": slam_params_file,
+        }.items(),
+    )
+
+    nav_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
             [
                 os.path.join(
@@ -32,9 +47,8 @@ def generate_launch_description():
         ),
         launch_arguments={
             "use_sim_time": use_sim_time,
-            "map": map,
             "autostart": autostart,
-            "params_file": params_file,
+            "params_file": nav_params_file,
         }.items(),
     )
 
@@ -46,10 +60,16 @@ def generate_launch_description():
         "autostart", default_value="true", description="automatically start Nav2 stack"
     )
 
-    params_file_arg = DeclareLaunchArgument(
-        "params_file",
-        default_value=default_params_file,
-        description="Parameter file for nav2",
+    slam_params_file_arg = DeclareLaunchArgument(
+        "slam_params_file",
+        default_value=slam_default_params_file,
+        description="Parameter file for slam",
+    )
+
+    nav_params_file_arg = DeclareLaunchArgument(
+        "nav_params_file",
+        default_value=nav_default_params_file,
+        description="Parameter file for nav",
     )
 
     map_arg = DeclareLaunchArgument(
@@ -60,9 +80,11 @@ def generate_launch_description():
 
     ld.add_action(sim_time_arg)
     ld.add_action(autostart_arg)
-    ld.add_action(params_file_arg)
+    ld.add_action(slam_params_file_arg)
+    ld.add_action(nav_params_file_arg)
     ld.add_action(map_arg)
 
-    ld.add_action(nav_bringup_launch)
+    ld.add_action(slam_launch)
+    ld.add_action(nav_launch)
 
     return ld

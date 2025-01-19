@@ -1,4 +1,0 @@
-slam_toolbox:
-  ros__parameters:
-    mode: localization
-
