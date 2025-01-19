@@ -20,7 +20,7 @@ def generate_launch_description():
         package='twist_mux',
         executable='twist_mux',
         parameters=[twist_mux_params, {'use_sim_time': use_sim_time}],
-        remappings=[('/cmd_vel_out', '/diff_controller/cmd_vel_unstamped')],
+        remappings=[('/cmd_vel_out', '/diff_controller/cmd_vel')],
         # arguments=['--ros-args', '--log-level', 'debug']
     )
 
