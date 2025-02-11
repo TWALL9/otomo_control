@@ -25,11 +25,14 @@ def generate_launch_description():
         'controllers.yaml'
     )
 
+    # To use debugging, build with
+    # colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Debug
     controller_manager = Node(
         package="controller_manager",
         executable="ros2_control_node",
         parameters=[{'robot_description': robot_description},
-                    controller_params_file]
+                    controller_params_file],
+        # prefix=['xterm -e gdb -ex run --args']  # or prefix=['gdbserver localhost:3000']
     )
 
     delayed_controller_manager = TimerAction(
