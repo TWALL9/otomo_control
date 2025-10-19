@@ -58,6 +58,12 @@ def generate_launch_description():
         arguments=['joint_broad'],
     )
 
+    imu_broad_spawner = Node(
+        package='controller_manager',
+        executable='spawner',
+        arguments=['imu_broadcaster'],
+    )
+
     delayed_diff_drive_spawner = RegisterEventHandler(
         event_handler=OnProcessStart(
             target_action=controller_manager,
@@ -78,6 +84,13 @@ def generate_launch_description():
             on_start=[joint_broad_spawner],
         )
     )
+    
+    delayed_imu_broad_spawner = RegisterEventHandler(
+        event_handler=OnProcessStart(
+            target_action=controller_manager,
+            on_start=[imu_broad_spawner],
+        )
+    )
 
     # Launch them all!
     return LaunchDescription([
@@ -85,4 +98,5 @@ def generate_launch_description():
         delayed_diff_drive_spawner,
         delayed_pid_spawner,
         delayed_joint_broad_spawner,
+        delayed_imu_broad_spawner,
     ])
